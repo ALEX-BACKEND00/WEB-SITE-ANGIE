@@ -9,8 +9,40 @@ document.addEventListener("DOMContentLoaded", () => {
     iniciarParallaxHero();
     iniciarHoverImagenes();
     iniciarBotonPulse();
+    iniciarOcultarHeader();
 
 });
+
+
+/* ===============================
+   OCULTAR HEADER AL SCROLL
+================================= */
+
+function iniciarOcultarHeader(){
+    const header = document.querySelector(".header");
+    
+    if(!header) return;
+    
+    let ultimoScroll = 0;
+    let umbralScroll = 5;
+    
+    window.addEventListener("scroll", () => {
+        
+        const scrollActual = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if(Math.abs(scrollActual - ultimoScroll) < umbralScroll) return;
+        
+        if(scrollActual > ultimoScroll && scrollActual > 100){
+            header.classList.add("hidden");
+        } else {
+            header.classList.remove("hidden");
+        }
+        
+        ultimoScroll = scrollActual;
+        
+    });
+    
+}
 
 
 /* ===============================
