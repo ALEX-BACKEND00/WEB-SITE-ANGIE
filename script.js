@@ -14,36 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-/* ===============================
-   OCULTAR HEADER AL SCROLL
-================================= */
-
-function iniciarOcultarHeader(){
-    const header = document.querySelector(".header");
-    
-    if(!header) return;
-    
-    let ultimoScroll = 0;
-    let umbralScroll = 5;
-    
-    window.addEventListener("scroll", () => {
-        
-        const scrollActual = window.pageYOffset || document.documentElement.scrollTop;
-        
-        if(Math.abs(scrollActual - ultimoScroll) < umbralScroll) return;
-        
-        if(scrollActual > ultimoScroll && scrollActual > 100){
-            header.classList.add("hidden");
-        } else {
-            header.classList.remove("hidden");
-        }
-        
-        ultimoScroll = scrollActual;
-        
-    });
-    
-}
-
 
 /* ===============================
    HERO CINEMÁTICO
@@ -181,13 +151,13 @@ function iniciarHoverImagenes(){
 ================================= */
 
 function iniciarBotonPulse(){
-
+    
     const boton = document.querySelector(".btn-whatsapp");
-
+    
     if(!boton) return;
-
+    
     setInterval(() => {
-
+        
         boton.animate([
             { transform: "scale(1)" },
             { transform: "scale(1.04)" },
@@ -196,6 +166,18 @@ function iniciarBotonPulse(){
             duration: 1400,
             easing: "ease-in-out"
         });
-
+        
     }, 2600);
+}
+
+
+/* ===============================
+   SCROLL TO NEXT SECTION
+================================ */
+
+function scrollToNext() {
+    const nextSection = document.querySelector("#whatsapp-seccion");
+    if(nextSection){
+        nextSection.scrollIntoView({ behavior: "smooth" });
+    }
 }
